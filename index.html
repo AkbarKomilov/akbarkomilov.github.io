@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="uz" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komilov Akbar | Kiberxavfsizlik Portfoliosi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#030712',
+                            card: 'rgba(10, 15, 30, 0.88)',
+                            border: 'rgba(0, 255, 157, 0.25)',
+                            neon: '#00ff9d',
+                            cyan: '#00f0ff',
+                            purple: '#a855f7',
+                            red: '#ff0055'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['Fira Code', 'JetBrains Mono', 'monospace'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Fonts and FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #030712;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        .font-mono {
+            font-family: 'Fira Code', monospace;
+        }
+        .cyber-glass {
+            background: rgba(8, 14, 28, 0.82);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 255, 157, 0.22);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
+        }
+        .cyber-glass:hover {
+            border-color: rgba(0, 255, 157, 0.5);
+            box-shadow: 0 0 25px rgba(0, 255, 157, 0.2);
+        }
+        .gradient-cyber {
+            background: linear-gradient(135deg, #00ff9d 0%, #00f0ff 50%, #a855f7 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #00ff9d 0%, #00f0ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-neon {
+            text-shadow: 0 0 12px rgba(0, 255, 157, 0.6);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0d192b;
+            border-radius: 3px;
+            border: 1px solid rgba(0, 255, 157, 0.3);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff9d;
+        }
+        .scanline {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.3), transparent);
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: scanline 6s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes scanline {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+        .cyber-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(0, 255, 157, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 255, 157, 0.05) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="selection:bg-cyber-neon selection:text-black relative cyber-grid">
+
+    <!-- Live Animated Cyber / Hacker Background Canvas Loop -->
+    <canvas id="cyberBackgroundCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
+    <div class="scanline z-10"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-50 cyber-glass border-b border-cyber-neon/20 px-4 lg:px-10 py-3 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-lg font-extrabold tracking-wider flex items-center gap-2.5 group">
+                <span class="w-9 h-9 rounded-lg bg-slate-950 border border-cyber-neon/60 flex items-center justify-center text-cyber-neon text-base font-mono shadow-[0_0_12px_rgba(0,255,157,0.2)] group-hover:scale-105 transition-all">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </span>
+                <span class="font-mono text-white text-base">AKBAR<span class="text-cyber-neon glow-neon">.SEC</span></span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-6 text-xs font-mono">
+                <a href="#about" class="text-gray-300 hover:text-cyber-neon transition-all flex items-center gap-1"><span class="text-cyber-neon">&gt;</span> Haqimda</a>
+                <a href="#skills" class="text-gray-300 hover:text-cyber-neon transition-all flex items-center gap-1"><span class="text-cyber-cyan">[+]</span> Ko'nikmalar</a>
+                <a href="#cyber" class="text-gray-300 hover:text-cyber-neon transition-all flex items-center gap-1"><span class="text-cyber-purple">[#]</span> Kiberxavfsizlik</a>
+                <a href="#projects" class="text-gray-300 hover:text-cyber-neon transition-all flex items-center gap-1"><span class="text-cyber-neon">[*]</span> Loyihalar</a>
+                <a href="#lab" class="text-gray-300 hover:text-cyber-neon transition-all flex items-center gap-1"><span class="text-yellow-400">[!]</span> Laboratoriya</a>
+                <a href="#terminal" class="text-gray-300 hover:text-cyber-neon transition-all flex items-center gap-1"><span class="text-cyber-cyan">[_]</span> Terminal</a>
+                <a href="#contact" class="text-gray-300 hover:text-cyber-neon transition-all flex items-center gap-1"><span class="text-emerald-400">[@]</span> Aloqa</a>
+            </div>
+
+            <div class="hidden sm:flex items-center gap-3">
+                <button id="soundToggle" title="Kiber Ovozlar" class="w-9 h-9 rounded-lg bg-slate-950 border border-cyber-neon/30 text-cyber-neon flex items-center justify-center text-xs hover:border-cyber-neon transition-all">
+                    <i id="soundIcon" class="fa-solid fa-volume-high"></i>
+                </button>
+                <a href="https://t.me/komillov_1234" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-slate-950 border border-cyber-neon/50 text-cyber-neon font-mono text-xs hover:bg-cyber-neon hover:text-black transition-all flex items-center gap-2 shadow-[0_0_10px_rgba(0,255,157,0.15)]">
+                    <i class="fa-brands fa-telegram text-sm"></i> Telegram
+                </a>
+            </div>
+
+            <button id="mobileMenuBtn" aria-label="Menyuni ochish" class="md:hidden relative w-9 h-9 rounded-lg bg-slate-950 border border-cyber-neon/40 text-cyber-neon flex items-center justify-center focus:outline-none">
+                <i id="menuIcon" class="fa-solid fa-bars text-base transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Floating Menu Window -->
+        <div id="mobileMenu" class="hidden md:hidden fixed inset-x-3 top-16 rounded-2xl bg-slate-950/95 border border-cyber-neon/40 p-4 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.95)] space-y-2.5 font-mono text-xs transform transition-all duration-300 opacity-0 scale-95 origin-top z-50">
+            <div class="flex items-center justify-between pb-2.5 border-b border-slate-800 text-[10px]">
+                <span class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-cyber-neon animate-ping"></span>
+                    <span class="text-cyber-neon font-bold">TIZIM: ONLAYN</span>
+                </span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-cyber-cyan">IP: 127.0.0.1</span>
+            </div>
+
+            <div class="space-y-1">
+                <a href="#about" class="mobile-nav-link flex items-center justify-between p-2.5 rounded-lg hover:bg-cyber-neon/10 border border-transparent hover:border-cyber-neon/30 text-gray-200 hover:text-cyber-neon transition-all">
+                    <span class="flex items-center gap-2.5"><span class="text-cyber-neon">&gt;_</span> Haqimda</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-cyber-neon"></i>
+                </a>
+
+                <a href="#skills" class="mobile-nav-link flex items-center justify-between p-2.5 rounded-lg hover:bg-cyber-neon/10 border border-transparent hover:border-cyber-neon/30 text-gray-200 hover:text-cyber-neon transition-all">
+                    <span class="flex items-center gap-2.5"><span class="text-cyber-cyan">[+]</span> Ko'nikmalar</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-cyber-neon"></i>
+                </a>
+
+                <a href="#cyber" class="mobile-nav-link flex items-center justify-between p-2.5 rounded-lg hover:bg-cyber-neon/10 border border-transparent hover:border-cyber-neon/30 text-gray-200 hover:text-cyber-neon transition-all">
+                    <span class="flex items-center gap-2.5"><span class="text-cyber-purple">[#]</span> Kiberxavfsizlik</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-cyber-neon"></i>
+                </a>
+
+                <a href="#projects" class="mobile-nav-link flex items-center justify-between p-2.5 rounded-lg hover:bg-cyber-neon/10 border border-transparent hover:border-cyber-neon/30 text-gray-200 hover:text-cyber-neon transition-all">
+                    <span class="flex items-center gap-2.5"><span class="text-cyber-neon">[*]</span> Loyihalar</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-cyber-neon"></i>
+                </a>
+
+                <a href="#lab" class="mobile-nav-link flex items-center justify-between p-2.5 rounded-lg hover:bg-cyber-neon/10 border border-transparent hover:border-cyber-neon/30 text-gray-200 hover:text-cyber-neon transition-all">
+                    <span class="flex items-center gap-2.5"><span class="text-yellow-400">[!]</span> Kiber-Laboratoriya</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-cyber-neon"></i>
+                </a>
+
+                <a href="#terminal" class="mobile-nav-link flex items-center justify-between p-2.5 rounded-lg hover:bg-cyber-neon/10 border border-transparent hover:border-cyber-neon/30 text-gray-200 hover:text-cyber-neon transition-all">
+                    <span class="flex items-center gap-2.5"><span class="text-cyber-cyan">[_]</span> Interaktiv Terminal</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-cyber-neon"></i>
+                </a>
+
+                <a href="#contact" class="mobile-nav-link flex items-center justify-between p-2.5 rounded-lg hover:bg-cyber-neon/10 border border-transparent hover:border-cyber-neon/30 text-gray-200 hover:text-cyber-neon transition-all">
+                    <span class="flex items-center gap-2.5"><span class="text-emerald-400">[@]</span> Aloqa</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-cyber-neon"></i>
+                </a>
+            </div>
+
+            <div class="pt-2 border-t border-slate-800">
+                <a href="https://t.me/komillov_1234" target="_blank" rel="noopener noreferrer" class="mobile-nav-link w-full py-2.5 rounded-xl gradient-cyber text-black font-extrabold text-xs tracking-wider flex items-center justify-center gap-2 shadow-lg">
+                    <i class="fa-brands fa-telegram text-sm"></i> Telegram orqali bog'lanish
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner Section -->
+    <section class="min-h-screen pt-28 pb-16 px-4 lg:px-10 flex items-center justify-center relative z-20">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full cyber-glass border border-cyber-neon/40 text-cyber-neon text-[11px] font-mono">
+                    <span class="w-2 h-2 rounded-full bg-cyber-neon animate-ping"></span>
+                    KIBERXAVFSIZLIK & DASTURLASH
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-tight">
+                    Komilov <span class="gradient-text glow-neon">Akbar</span>
+                </h1>
+
+                <p class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    Kiberxavfsizlik mutaxassisi, Kali Linux operatsion tizimida zaifliklarni tahlil qiluvchi, Python hamda C++ tillarida xavfsiz tizimlar va avtomatlashtirilgan skriptlar barpo etuvchi izlanuvchi.
+                </p>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 font-mono text-xs max-w-lg mx-auto lg:mx-0">
+                    <div class="cyber-glass p-3 rounded-xl border border-cyber-neon/30 text-left">
+                        <p class="text-gray-400 text-[10px]">Sohasi</p>
+                        <p class="font-bold text-cyber-neon mt-0.5">Kiberxavfsizlik</p>
+                    </div>
+
+                    <div class="cyber-glass p-3 rounded-xl border border-cyber-cyan/30 text-left">
+                        <p class="text-gray-400 text-[10px]">Tizim Muhiti</p>
+                        <p class="font-bold text-cyber-cyan mt-0.5">Kali Linux OS</p>
+                    </div>
+
+                    <div class="cyber-glass p-3 rounded-xl border border-cyber-purple/30 text-left col-span-2 sm:col-span-1">
+                        <p class="text-gray-400 text-[10px]">Dasturlash</p>
+                        <p class="font-bold text-cyber-purple mt-0.5">Python & C++</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-3">
+                    <a href="#lab" class="px-6 py-3 rounded-xl gradient-cyber text-black font-extrabold text-xs shadow-lg hover:brightness-110 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-flask"></i> Kiber-Laboratoriya
+                    </a>
+                    <a href="https://t.me/komillov_1234" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl cyber-glass text-cyber-neon font-mono text-xs border border-cyber-neon/40 hover:bg-cyber-neon hover:text-black transition-all flex items-center gap-2">
+                        <i class="fa-brands fa-telegram text-sm"></i> Telegram orqali bog'lanish
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="w-full max-w-md bg-slate-950/90 border border-cyber-neon/40 rounded-2xl p-4 font-mono shadow-2xl relative cyber-glass">
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
+                        <div class="flex space-x-1.5">
+                            <span class="w-2.5 h-2.5 bg-red-500 rounded-full inline-block"></span>
+                            <span class="w-2.5 h-2.5 bg-yellow-500 rounded-full inline-block"></span>
+                            <span class="w-2.5 h-2.5 bg-green-500 rounded-full inline-block"></span>
+                        </div>
+                        <span class="text-[11px] text-gray-400">root@kali-linux:~#</span>
+                    </div>
+
+                    <div class="text-xs space-y-2 text-gray-300">
+                        <p><span class="text-cyber-neon">root@kali:~$</span> whoami</p>
+                        <p class="text-gray-400 pl-3">Komilov Akbar - Cybersecurity Specialist</p>
+                        
+                        <p><span class="text-cyber-neon">root@kali:~$</span> cat skills.txt</p>
+                        <p class="text-cyber-cyan pl-3">[✓] Kali Linux & Penetratsion Testlash</p>
+                        <p class="text-cyber-cyan pl-3">[✓] Python & C++ Skriptlar</p>
+                        <p class="text-cyber-cyan pl-3">[✓] Tarmoq Xavfsizligi Auditi</p>
+                        <p class="text-cyber-cyan pl-3">[✓] Chiziqli Algebra & YHQ</p>
+
+                        <p><span class="text-cyber-neon">root@kali:~$</span> status --sec</p>
+                        <p class="text-emerald-400 pl-3">● Tizim xavfsiz va barqaror holatda</p>
+
+                        <div class="pt-2 flex items-center gap-1 text-cyber-neon">
+                            <span>root@kali:~$</span>
+                            <span class="w-2 h-4 bg-cyber-neon animate-pulse inline-block"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="about" class="py-16 px-4 lg:px-10 relative z-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-mono font-bold uppercase tracking-widest text-cyber-neon mb-1">// 01. TANISHUV</h2>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Haqimda</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-2 italic">"Tizimlar mukammal emas, xavfsizlik esa tinimsiz izlanish va mas'uliyatni talab qiladi."</p>
+                <div class="w-12 h-1 bg-cyber-neon mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="cyber-glass p-6 rounded-2xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-cyber-neon/10 border border-cyber-neon/30 flex items-center justify-center text-cyber-neon text-xl mb-4">
+                        <i class="fa-solid fa-user-ninja"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Kiberxavfsizlik va Kali Linux</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Kali Linux operatsion tizimida axborot xavfsizligini ta'minlash, zaifliklarni skanerlash va Ethical Hacking prinsiplarini qo'llayman.
+                    </p>
+                </div>
+
+                <div class="cyber-glass p-6 rounded-2xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan text-xl mb-4">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Dasturlash & Skriptlar</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        C++ va Python tillari orqali xavfsizlik vazifalarini avtomatlashtiruvchi skriptlar hamda mantiqiy murakkab dasturlar ishlab chiqaman.
+                    </p>
+                </div>
+
+                <div class="cyber-glass p-6 rounded-2xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-cyber-purple/10 border border-cyber-purple/30 flex items-center justify-center text-cyber-purple text-xl mb-4">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Mantiq va Intizom</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Chiziqli algebra orqali analitik fikrlashni, Yo'l harakati qoidalari (YHQ) orqali esa qoidalar va xavfsizlik intizomiga amal qilishni o'rganaman.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-16 px-4 lg:px-10 bg-slate-950/50 border-y border-slate-800/80 relative z-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-mono font-bold uppercase tracking-widest text-cyber-cyan mb-1">// 02. KO'NIKMALAR</h2>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Texnik Baza & Darajalar</h3>
+                <div class="w-12 h-1 bg-cyber-cyan mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="cyber-glass p-5 rounded-xl space-y-2">
+                    <div class="flex justify-between items-center text-xs font-mono">
+                        <span class="text-white font-bold flex items-center gap-2">
+                            <i class="fa-brands fa-linux text-cyber-neon text-sm"></i> Kali Linux & OS Administration
+                        </span>
+                        <span class="text-cyber-neon font-bold">88%</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                        <div class="h-full bg-cyber-neon rounded-full" style="width: 88%;"></div>
+                    </div>
+                </div>
+
+                <div class="cyber-glass p-5 rounded-xl space-y-2">
+                    <div class="flex justify-between items-center text-xs font-mono">
+                        <span class="text-white font-bold flex items-center gap-2">
+                            <i class="fa-brands fa-python text-yellow-400 text-sm"></i> Python Skriptlar & Automation
+                        </span>
+                        <span class="text-yellow-400 font-bold">85%</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                        <div class="h-full bg-yellow-400 rounded-full" style="width: 85%;"></div>
+                    </div>
+                </div>
+
+                <div class="cyber-glass p-5 rounded-xl space-y-2">
+                    <div class="flex justify-between items-center text-xs font-mono">
+                        <span class="text-white font-bold flex items-center gap-2">
+                            <i class="fa-solid fa-code text-blue-400 text-sm"></i> C++ & Algoritmlar
+                        </span>
+                        <span class="text-blue-400 font-bold">80%</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                        <div class="h-full bg-blue-400 rounded-full" style="width: 80%;"></div>
+                    </div>
+                </div>
+
+                <div class="cyber-glass p-5 rounded-xl space-y-2">
+                    <div class="flex justify-between items-center text-xs font-mono">
+                        <span class="text-white font-bold flex items-center gap-2">
+                            <i class="fa-solid fa-network-wired text-cyber-cyan text-sm"></i> Tarmoq Xavfsizligi & Wireshark
+                        </span>
+                        <span class="text-cyber-cyan font-bold">82%</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                        <div class="h-full bg-cyber-cyan rounded-full" style="width: 82%;"></div>
+                    </div>
+                </div>
+
+                <div class="cyber-glass p-5 rounded-xl space-y-2">
+                    <div class="flex justify-between items-center text-xs font-mono">
+                        <span class="text-white font-bold flex items-center gap-2">
+                            <i class="fa-solid fa-shield-virus text-cyber-purple text-sm"></i> Zaifliklarni Skanerlash (Pen-Testing)
+                        </span>
+                        <span class="text-cyber-purple font-bold">78%</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                        <div class="h-full bg-cyber-purple rounded-full" style="width: 78%;"></div>
+                    </div>
+                </div>
+
+                <div class="cyber-glass p-5 rounded-xl space-y-2">
+                    <div class="flex justify-between items-center text-xs font-mono">
+                        <span class="text-white font-bold flex items-center gap-2">
+                            <i class="fa-solid fa-square-root-variable text-emerald-400 text-sm"></i> Chiziqli Algebra & YHQ
+                        </span>
+                        <span class="text-emerald-400 font-bold">90%</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                        <div class="h-full bg-emerald-400 rounded-full" style="width: 90%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cyber" class="py-16 px-4 lg:px-10 relative z-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-mono font-bold uppercase tracking-widest text-cyber-purple mb-1">// 03. KIBER YO'NALISH</h2>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Xavfsizlik Yo'nalishlari</h3>
+                <div class="w-12 h-1 bg-cyber-purple mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="cyber-glass p-5 rounded-xl border-t-2 border-t-cyber-neon">
+                    <i class="fa-brands fa-linux text-2xl text-cyber-neon mb-3"></i>
+                    <h4 class="text-base font-bold text-white mb-1.5">Kali Linux</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">Maxsus xakerlik va axborot xavfsizligi instrumentlari to'plamida ishlash.</p>
+                </div>
+
+                <div class="cyber-glass p-5 rounded-xl border-t-2 border-t-cyber-cyan">
+                    <i class="fa-solid fa-bug text-2xl text-cyber-cyan mb-3"></i>
+                    <h4 class="text-base font-bold text-white mb-1.5">Zaifliklar Tahlili</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">Tizim va veb-saytlardagi zaif nuqtalarni izlash hamda xavf darajasini baholash.</p>
+                </div>
+
+                <div class="cyber-glass p-5 rounded-xl border-t-2 border-t-cyber-purple">
+                    <i class="fa-solid fa-server text-2xl text-cyber-purple mb-3"></i>
+                    <h4 class="text-base font-bold text-white mb-1.5">Tarmoq Auditi</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">Tarmoq trafigi va portlarni kuzatib borish orqali ruxsatsiz kirishlarni aniqlash.</p>
+                </div>
+
+                <div class="cyber-glass p-5 rounded-xl border-t-2 border-t-emerald-400">
+                    <i class="fa-solid fa-user-shield text-2xl text-emerald-400 mb-3"></i>
+                    <h4 class="text-base font-bold text-white mb-1.5">Ethical Hacking</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">Ruxsat etilgan tartibda himoya tizimlarini sinovdan o'tkazish va mustahkamlash.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-16 px-4 lg:px-10 bg-slate-950/50 border-t border-slate-800/80 relative z-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-mono font-bold uppercase tracking-widest text-cyber-neon mb-1">// 04. LOYIHALAR</h2>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Asosiy Kiber-Loyiha</h3>
+                <div class="w-12 h-1 bg-cyber-neon mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="max-w-2xl mx-auto">
+                <div class="cyber-glass rounded-2xl overflow-hidden border border-cyber-neon/40 shadow-2xl">
+                    <div class="p-6 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border-b border-slate-800 flex justify-between items-center">
+                        <div>
+                            <span class="px-2.5 py-0.5 bg-cyber-neon/20 border border-cyber-neon/40 text-cyber-neon font-mono text-[10px] rounded-full">
+                                Python 3 / Linux API
+                            </span>
+                            <h4 class="text-xl font-black text-white mt-2">CyberShield Guard v1.0</h4>
+                        </div>
+                        <i class="fa-solid fa-shield-virus text-3xl text-cyber-neon"></i>
+                    </div>
+
+                    <div class="p-6 space-y-4">
+                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                            Python va Kali Linux muhitida yaratilgan maxsus avtomatik skaner. U lokal tarmoqdagi barcha faol qurilmalarni skanerlaydi, ochiq portlar va xavfli protokollarni aniqlab, xavfsizlik hisobotini taqdim etadi.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 text-[11px] font-mono text-gray-400">
+                            <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-cyber-neon"># NetworkScan</span>
+                            <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-cyber-cyan"># Python3</span>
+                            <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-cyber-purple"># KaliLinux</span>
+                            <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-emerald-400"># SocketAPI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lab" class="py-16 px-4 lg:px-10 relative z-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-mono font-bold uppercase tracking-widest text-yellow-400 mb-1">// 05. INTERAKTIV TIZIM</h2>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Kiber-Laboratoriya</h3>
+                <p class="text-gray-400 text-xs mt-1">Interaktiv xakerlik vositalarini va CTF topshirig'ini sinab ko'ring</p>
+                <div class="w-12 h-1 bg-yellow-400 mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Tool 1: CTF Challenge -->
+                <div class="cyber-glass p-5 rounded-2xl border border-cyber-neon/40 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-xs font-mono text-cyber-neon font-bold"><i class="fa-solid fa-flag me-1.5"></i> CTF Challenge</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-cyber-neon/10 text-cyber-neon font-mono">EASY</span>
+                        </div>
+                        <p class="text-xs text-gray-300 mt-3">
+                            Maxfiy xabarni toping: Shifrlangan matn: <code class="text-cyber-cyan bg-slate-900 px-1 py-0.5 rounded">RkxBR3tBS0JBUl9DRUJFUl8yMDI2fQ==</code>
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <input type="text" id="ctfInput" placeholder="FLAG{...} kalitini kiriting" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs font-mono text-white focus:border-cyber-neon focus:outline-none">
+                        <button id="ctfSubmit" class="w-full py-2 bg-cyber-neon/20 border border-cyber-neon/50 text-cyber-neon font-mono text-xs rounded-lg hover:bg-cyber-neon hover:text-black transition-all">
+                            Tekshirish
+                        </button>
+                        <p id="ctfResult" class="text-[11px] font-mono text-center min-h-[18px]"></p>
+                    </div>
+                </div>
+
+                <!-- Tool 2: Password Generator -->
+                <div class="cyber-glass p-5 rounded-2xl border border-cyber-cyan/40 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-xs font-mono text-cyber-cyan font-bold"><i class="fa-solid fa-key me-1.5"></i> PassGen</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-cyber-cyan/10 text-cyber-cyan font-mono">SECURE</span>
+                        </div>
+                        <p class="text-xs text-gray-300 mt-3">
+                            Kiberxavfsiz va buzilmas murakkab parollarni generatsiya qiling.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2 font-mono">
+                        <div class="flex items-center justify-between bg-slate-950 p-2 rounded-lg border border-slate-800 text-xs">
+                            <span id="passOutput" class="text-cyber-cyan truncate">Pass-Gen-2026!#</span>
+                            <button id="copyPass" class="text-gray-400 hover:text-cyber-cyan px-2" title="Nusxalash"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <button id="genPass" class="w-full py-2 bg-cyber-cyan/20 border border-cyber-cyan/50 text-cyber-cyan text-xs rounded-lg hover:bg-cyber-cyan hover:text-black transition-all">
+                            Yangi Parol Yaratish
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tool 3: Base64 Encoder/Decoder -->
+                <div class="cyber-glass p-5 rounded-2xl border border-cyber-purple/40 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-xs font-mono text-cyber-purple font-bold"><i class="fa-solid fa-lock me-1.5"></i> Base64 Tool</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-cyber-purple/10 text-cyber-purple font-mono">ENCODER</span>
+                        </div>
+                        <p class="text-xs text-gray-300 mt-3">
+                            Matnlarni Base64 ko'rinishida shifrlang yoki deshifrovka qiling.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2 font-mono">
+                        <input type="text" id="b64Input" placeholder="Matn kiriting..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs text-white focus:border-cyber-purple focus:outline-none">
+                        <div class="grid grid-cols-2 gap-2">
+                            <button id="b64Encode" class="py-1.5 bg-cyber-purple/20 border border-cyber-purple/50 text-cyber-purple text-xs rounded-lg hover:bg-cyber-purple hover:text-black transition-all">
+                                Encode
+                            </button>
+                            <button id="b64Decode" class="py-1.5 bg-slate-900 border border-slate-800 text-gray-300 text-xs rounded-lg hover:bg-slate-800 transition-all">
+                                Decode
+                            </button>
+                        </div>
+                        <p id="b64Result" class="text-[11px] font-mono text-cyber-purple truncate bg-slate-950 p-2 rounded border border-slate-800 min-h-[32px]"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="terminal" class="py-16 px-4 lg:px-10 relative z-20">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <h2 class="text-xs font-mono font-bold uppercase tracking-widest text-cyber-cyan mb-1">// 06. SIMULYATOR</h2>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Kali Linux Terminal Buyruq Satri</h3>
+                <p class="text-gray-400 text-xs mt-1">Terminalga buyruq kiritib ko'ring (Masalan: <code class="text-cyber-neon">help</code>, <code class="text-cyber-neon">whoami</code>, <code class="text-cyber-neon">skills</code>, <code class="text-cyber-neon">ctf</code>, <code class="text-cyber-neon">clear</code>)</p>
+            </div>
+
+            <div class="cyber-glass rounded-2xl border border-cyber-cyan/40 overflow-hidden font-mono shadow-2xl">
+                <div class="bg-slate-950 px-4 py-2.5 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
+                        <span class="text-xs text-gray-400 ml-2">akbar@kali-linux: ~</span>
+                    </div>
+                    <span class="text-[10px] text-cyber-cyan">BASH v5.2</span>
+                </div>
+
+                <div id="terminalScreen" class="p-4 h-64 overflow-y-auto text-xs space-y-2 bg-slate-950/90 text-gray-300">
+                    <p class="text-cyber-neon">Xush kelibsiz! Komilov Akbar interaktiv kiber-terminali ishga tushdi.</p>
+                    <p class="text-gray-400">Mavjud buyruqlarni ko'rish uchun <span class="text-cyber-cyan font-bold">'help'</span> deb yozing va Enter tugmasini bosing.</p>
+                </div>
+
+                <form id="terminalForm" class="p-3 bg-slate-950 border-t border-slate-800 flex items-center gap-2">
+                    <span class="text-cyber-neon font-bold text-xs">akbar@kali:~$</span>
+                    <input type="text" id="terminalInput" autocomplete="off" placeholder="Buyruq kiriting..." class="w-full bg-transparent text-xs text-white focus:outline-none font-mono">
+                    <button type="submit" class="px-3 py-1 bg-cyber-neon/20 border border-cyber-neon/40 text-cyber-neon text-xs rounded hover:bg-cyber-neon hover:text-black transition-all">
+                        Run
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 px-4 lg:px-10 relative z-20">
+        <div class="max-w-md mx-auto">
+            <div class="cyber-glass rounded-2xl p-6 border border-cyber-neon/30 text-center space-y-5">
+                <div>
+                    <h2 class="text-[11px] font-mono font-bold uppercase tracking-widest text-cyber-neon mb-1">// 07. BOG'LANISH</h2>
+                    <h3 class="text-xl font-extrabold text-white">Muloqot Va Hamkorlik</h3>
+                    <p class="text-gray-400 text-xs mt-1 leading-relaxed">
+                        Kiberxavfsizlik, loyihalar va savollar bo'yicha menga Telegram orqali xabar yuborishingiz mumkin.
+                    </p>
+                </div>
+
+                <div class="bg-slate-950 p-4 rounded-xl border border-cyber-cyan/30 flex flex-col items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-cyber-cyan/10 border border-cyber-cyan/40 flex items-center justify-center text-cyber-cyan text-xl">
+                        <i class="fa-brands fa-telegram"></i>
+                    </div>
+                    
+                    <a href="https://t.me/komillov_1234" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl gradient-cyber text-black font-extrabold text-xs flex items-center justify-center gap-2 shadow-lg hover:brightness-110 transition-all">
+                        <i class="fa-brands fa-telegram text-base"></i>
+                        <span>Telegram orqali bog'lanish</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-slate-800/80 py-6 px-4 text-center text-gray-500 text-xs font-mono relative z-20 bg-slate-950">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p>&copy; Komilov Akbar. Kiberxavfsizlik va Dasturlash Portfoliosi.</p>
+            <p class="flex items-center gap-1.5 text-cyber-neon">
+                <i class="fa-solid fa-shield-halved"></i> Security & Privacy First
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        /* --- 1. Sound Synthesizer Audio Controller --- */
+        let soundEnabled = true;
+        const soundToggle = document.getElementById('soundToggle');
+        const soundIcon = document.getElementById('soundIcon');
+
+        soundToggle.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            if (soundEnabled) {
+                soundIcon.className = 'fa-solid fa-volume-high';
+                soundToggle.classList.remove('text-gray-500');
+                soundToggle.classList.add('text-cyber-neon');
+            } else {
+                soundIcon.className = 'fa-solid fa-volume-xmark';
+                soundToggle.classList.remove('text-cyber-neon');
+                soundToggle.classList.add('text-gray-500');
+            }
+        });
+
+        function playBeep(freq = 600, type = 'sine', duration = 0.04) {
+            if (!soundEnabled) return;
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = type;
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.05, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + duration);
+            } catch (e) {}
+        }
+
+        /* --- 2. Live Animated Hacker Canvas Loop (Grid + Code Rain + Binary Floating Particles) --- */
+        const cyberCanvas = document.getElementById('cyberBackgroundCanvas');
+        const ctx = cyberCanvas.getContext('2d');
+
+        function resizeCyberCanvas() {
+            cyberCanvas.width = window.innerWidth;
+            cyberCanvas.height = window.innerHeight;
+        }
+        resizeCyberCanvas();
+        window.addEventListener('resize', resizeCyberCanvas);
+
+        const chars = '01010101010101010101010101010101AKBARSECURITYKALI010101';
+        const fontSize = 14;
+        let columns = Math.floor(cyberCanvas.width / fontSize);
+        let drops = Array(columns).fill(1);
+
+        // Binary particles floating upwards
+        const particles = [];
+        for (let i = 0; i < 45; i++) {
+            particles.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                speed: 0.5 + Math.random() * 1.5,
+                char: Math.random() > 0.5 ? '1' : '0',
+                opacity: Math.random() * 0.7 + 0.3,
+                size: Math.floor(Math.random() * 12 + 10)
+            });
+        }
+
+        function drawCyberAnimation() {
+            // Semi-transparent background fade for code rain trails
+            ctx.fillStyle = 'rgba(3, 7, 18, 0.12)';
+            ctx.fillRect(0, 0, cyberCanvas.width, cyberCanvas.height);
+
+            // Matrix Code Stream
+            ctx.fillStyle = '#00ff9d';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+
+                // Alternate colors for hacker depth effect
+                if (i % 5 === 0) {
+                    ctx.fillStyle = '#00f0ff';
+                } else if (i % 9 === 0) {
+                    ctx.fillStyle = '#a855f7';
+                } else {
+                    ctx.fillStyle = '#00ff9d';
+                }
+
+                ctx.fillText(text, x, y);
+
+                if (y > cyberCanvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+
+            // Floating Binary Particles Loop
+            particles.forEach(p => {
+                ctx.fillStyle = `rgba(0, 255, 157, ${p.opacity})`;
+                ctx.font = `${p.size}px monospace`;
+                ctx.fillText(p.char, p.x, p.y);
+
+                p.y -= p.speed;
+                if (p.y < 0) {
+                    p.y = cyberCanvas.height;
+                    p.x = Math.random() * cyberCanvas.width;
+                }
+            });
+
+            requestAnimationFrame(drawCyberAnimation);
+        }
+
+        drawCyberAnimation();
+
+        /* --- 3. Mobile Navigation Menu Logic --- */
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        function toggleMenu() {
+            playBeep(800, 'square', 0.05);
+            const isHidden = mobileMenu.classList.contains('hidden');
+            
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    mobileMenu.classList.remove('opacity-0', 'scale-95');
+                    mobileMenu.classList.add('opacity-100', 'scale-100');
+                }, 10);
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark', 'text-cyber-neon');
+            } else {
+                mobileMenu.classList.remove('opacity-100', 'scale-100');
+                mobileMenu.classList.add('opacity-0', 'scale-95');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+                menuIcon.classList.remove('fa-xmark', 'text-cyber-neon');
+                menuIcon.classList.add('fa-bars');
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                playBeep(900, 'sine', 0.03);
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+                if (!mobileMenu.classList.contains('hidden')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        /* --- 4. Interactive Kali Terminal Engine --- */
+        const terminalForm = document.getElementById('terminalForm');
+        const terminalInput = document.getElementById('terminalInput');
+        const terminalScreen = document.getElementById('terminalScreen');
+
+        const commands = {
+            'help': 'Mavjud buyruqlar: <br>- <span class="text-cyber-neon">whoami</span> : Akbar haqida ma\'lumot<br>- <span class="text-cyber-neon">skills</span> : Texnik ko\'nikmalar ro\'yxati<br>- <span class="text-cyber-neon">projects</span> : Loyihalar haqida<br>- <span class="text-cyber-neon">ctf</span> : CTF shifrlangan matn<br>- <span class="text-cyber-neon">contact</span> : Telegram havola<br>- <span class="text-cyber-neon">clear</span> : Terminalni tozalash',
+            'whoami': 'Komilov Akbar — Kiberxavfsizlik va dasturlashga qiziquvchi mutaxassis. Kali Linux va Python/C++ orqali xavfsizlik vazifalarini bajaradi.',
+            'skills': '[✓] Kali Linux & Linux OS<br>[✓] Python3 & C++ Scripting<br>[✓] Penetratsion Testlash (Zaifliklar tahlili)<br>[✓] Tarmoq xavfsizligi (Wireshark, Nmap)<br>[✓] Chiziqli algebra & YHQ',
+            'projects': 'Asosiy loyiha: CyberShield Guard v1.0 — Python va Linux API yordamida yaratilgan avtomatik tarmoq skaneri va xavfsizlik monitoringi.',
+            'ctf': 'Shifrlangan matn: RkxBR3tBS0JBUl9DRUJFUl8yMDI2fQ== (Deshifrovka qilish uchun Base64 usulidan foydalaning)',
+            'contact': 'Telegram orqali bog\'lanish tugmasi sahifa pastida joylashgan.'
+        };
+
+        terminalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            playBeep(700, 'triangle', 0.04);
+            const val = terminalInput.value.trim().toLowerCase();
+            terminalInput.value = '';
+
+            if (!val) return;
+
+            const cmdLine = document.createElement('p');
+            cmdLine.innerHTML = `<span class="text-cyber-neon">akbar@kali:~$</span> ${val}`;
+            terminalScreen.appendChild(cmdLine);
+
+            if (val === 'clear') {
+                terminalScreen.innerHTML = '';
+            } else if (commands[val]) {
+                const resLine = document.createElement('div');
+                resLine.className = 'text-gray-300 pl-3 border-l border-cyber-neon/40 py-1 my-1';
+                resLine.innerHTML = commands[val];
+                terminalScreen.appendChild(resLine);
+            } else {
+                const errLine = document.createElement('p');
+                errLine.className = 'text-red-400 pl-3';
+                errLine.innerHTML = `Buyruq topilmadi: '${val}'. Mavjud buyruqlar uchun 'help' deb yozing.`;
+                terminalScreen.appendChild(errLine);
+            }
+
+            terminalScreen.scrollTop = terminalScreen.scrollHeight;
+        });
+
+        /* --- 5. Cyber Tools Logic (CTF, PassGen, Base64) --- */
+        // CTF Challenge Logic
+        document.getElementById('ctfSubmit').addEventListener('click', () => {
+            playBeep(850, 'sine', 0.05);
+            const input = document.getElementById('ctfInput').value.trim();
+            const res = document.getElementById('ctfResult');
+            if (input === 'FLAG{AKBAR_CYBER_2026}') {
+                res.className = 'text-[11px] font-mono text-center text-cyber-neon font-bold';
+                res.innerText = 'Tabriklaymiz! FLAG to\'g\'ri topildi! 🎉';
+            } else {
+                res.className = 'text-[11px] font-mono text-center text-red-400 font-bold';
+                res.innerText = 'Noto\'g\'ri FLAG. Qaytadan urinib ko\'ring!';
+            }
+        });
+
+        // PassGen Logic
+        document.getElementById('genPass').addEventListener('click', () => {
+            playBeep(1000, 'square', 0.03);
+            const passChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
+            let pass = 'AKB-';
+            for (let i = 0; i < 12; i++) {
+                pass += passChars.charAt(Math.floor(Math.random() * passChars.length));
+            }
+            document.getElementById('passOutput').innerText = pass;
+        });
+
+        document.getElementById('copyPass').addEventListener('click', () => {
+            playBeep(1200, 'sine', 0.05);
+            const passText = document.getElementById('passOutput').innerText;
+            const tempInput = document.createElement('input');
+            tempInput.value = passText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+        });
+
+        // Base64 Tool Logic
+        document.getElementById('b64Encode').addEventListener('click', () => {
+            playBeep(750, 'triangle', 0.04);
+            const val = document.getElementById('b64Input').value;
+            if (val) {
+                try {
+                    document.getElementById('b64Result').innerText = btoa(val);
+                } catch (e) {
+                    document.getElementById('b64Result').innerText = 'Xatolik!';
+                }
+            }
+        });
+
+        document.getElementById('b64Decode').addEventListener('click', () => {
+            playBeep(750, 'triangle', 0.04);
+            const val = document.getElementById('b64Input').value;
+            if (val) {
+                try {
+                    document.getElementById('b64Result').innerText = atob(val);
+                } catch (e) {
+                    document.getElementById('b64Result').innerText = 'Format noto\'g\'ri!';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
